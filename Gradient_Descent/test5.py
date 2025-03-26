@@ -34,7 +34,7 @@ for num_of_epoch in range(epoch):
     w = w - learning_rate * (gradient_w_sum / len(x_train))
     b = b - learning_rate * (gradient_b_sum / len(x_train))
     
-    print(loss / len(x_train))
+    print(loss)
     
 x_test = [val for val in range(10)]
 y_test = [w * val + b for val in x_test]
