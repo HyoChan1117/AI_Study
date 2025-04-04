@@ -17,6 +17,7 @@ X = np.random.rand(10, 2) * 5
 # np.random.randint(0, 2, size=10) : 0~1 사이의 랜덤한 정수로 이루어진 10개의 데이터 포인트 생성
 y = np.random.randint(0, 2, size=10)
 
+# 데이터셋 나누기
 # test_size : 테스트 데이터셋의 비율 (0.2 = 20%)
 # train_test_split : 데이터를 학습용과 테스트용으로 나누는 함수
 # random_state : 랜덤 시드 (랜덤하게 데이터를 나누되, 항상 동일하게 나눠지도록 고정)
