@@ -1,3 +1,5 @@
+# Numpy는 수치 계산을 위한 파이썬 라이브러리
+# 행렬에 대한 연산을 지원원
 import numpy as np
 
 bar = np.zeros((2))

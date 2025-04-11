@@ -11,7 +11,7 @@ y = y.ravel()  # y를 1차원으로 변환
 
 # 모델 생성 후 하이퍼파라미터 설정
 model = SGDRegressor(
-    max_iter=100,
+    max_iter=100, # max_iter : 최대 반복 횟수
     learning_rate='constant', # constant : 고정된 학습률
     eta0=0.001, # eta0 : 초기 학습률
     penalty=None, # penalty : 규제 항 (L2, L1, elasticnet)
