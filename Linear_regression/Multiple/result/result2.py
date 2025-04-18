@@ -1,21 +1,31 @@
 import numpy as np
 
 # 설정
+# 샘플 5개, 특성 2개 데이터셋
 num_of_samples = 5
 num_of_features = 2
+
+# 랜덤 시드 고정 및 소수점 2자리로 출력 설정
 np.random.seed(0)
 np.set_printoptions(suppress=True, precision=2)
 
 # 데이터 생성
 X = np.random.rand(num_of_samples, num_of_features) * 10
+
+# 정답 가중치 및 편향 설정 (실제 값)
 w_true = [5, 3]
 b_true = 4
+
+# 실제 값에 노이즈 추가
+# y = wx + b + noise (실제 y 값)
 noise = np.random.rand(num_of_samples) * 0.5
-y = X[:, 0] * w_true[0] + X[:, 1] * w_true[1] + b_true + noise  # y = wx + b + noise (실제 y 값)
+y = X[:, 0] * w_true[0] + X[:, 1] * w_true[1] + b_true + noise
 
 # 초기 가중치 및 편향 설정 (학습 대상)
 w = np.random.rand(num_of_features)  # 초기 w: (2,)
 b = np.random.rand()          # 초기 b: 스칼라
+
+# 학습률 및 에폭 설정
 learning_rate = 0.01
 epochs = 10000
 
