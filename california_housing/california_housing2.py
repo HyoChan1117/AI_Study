@@ -1,5 +1,5 @@
 # 필수 라이브러리 불러오기
-import numpy as np
+import numpy as np                                        # 숫자 배열 및 수치 연산에 사용
 from sklearn.datasets import fetch_california_housing     # 캘리포니아 주택 데이터셋
 from sklearn.linear_model import SGDRegressor             # 확률적 경사하강법 회귀 모델
 from sklearn.model_selection import train_test_split      # 훈련/테스트 데이터 분할 함수
@@ -19,17 +19,17 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_
 
 # 3. 입력 특성 정규화 (표준화: 평균 0, 표준편차 1로 맞춤)
 # SGD는 입력값 크기에 민감하므로 반드시 정규화가 필요
-scaler = StandardScaler()
-X_train_scaled = scaler.fit_transform(X_train)  # 훈련 데이터에 맞춰 스케일링
-X_test_scaled = scaler.transform(X_test)        # 테스트 데이터 스케일링 (훈련 데이터 기준으로 변환)
+scaler = StandardScaler()                       # 평균 0, 표준편차 1로 변환
+X_train_scaled = scaler.fit_transform(X_train)  # 평균과 표준편차를 계산하고 정규화
+X_test_scaled = scaler.transform(X_test)        # 훈련 데이터를 기준으로 정규화만 수행
 
 # 4. SGDRegressor 모델 정의 및 학습
 model = SGDRegressor(
     max_iter=1000,             # 최대 반복 횟수 (epoch 수)
     tol=0.01,                  # 손실이 tol보다 작아지면 학습 중단 (수렴 기준)
     eta0=0.0001,                # 학습률(learning rate) 초기값
-    learning_rate='constant',  # 학습률 고정 방식
-    penalty=None,              # 정규화 없음 (과적합 방지 설정 사용 안함함)
+    learning_rate='adaptive',  # 학습률 고정 방식
+    penalty=None,              # 정규화 없음 (과적합 방지 설정 사용 안함)
     random_state=42            # 결과 재현을 위한 시드 고정
 )
 model.fit(X_train_scaled, y_train)  # 학습 수행
