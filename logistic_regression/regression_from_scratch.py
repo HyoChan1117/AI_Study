@@ -14,18 +14,23 @@ X_train, X_test, y_train, y_test = train_test_split(
 )   # stratify=y: 클래스 비율 유지
 
 # 3. 특성 표준화 (평균 0, 분산 1)
+# 특성의 단위와 범위를 맞추기 위해 표준화
+# StandardScaler는 평균을 0, 표준편차를 1로 변환
 scaler = StandardScaler()
-X_train = scaler.fit_transform(X_train)
-X_test = scaler.transform(X_test)
+X_train = scaler.fit_transform(X_train)  # (455, 30)
+X_test = scaler.transform(X_test)        # (114, 30)
 
+# 특성 개수
 y_train = y_train.reshape(-1, 1)  # (455, 1)
 y_test = y_test.reshape(-1, 1)  # (114, 1)
 
+# 4. 가중치 및 편향 초기화
 w = np.random.randn(X_train.shape[1], 1)  # (30, 1)
 b = np.random.randn()  # (1,)
 
 learning_rate = 0.01
 epochs = 100000
+
 
 for epoch in range(epochs):
     # prediction
@@ -48,7 +53,7 @@ for epoch in range(epochs):
     # calculate loss
     loss = -np.mean(y_train * np.log(prediction) + (1 - y_train) * np.log(1 - prediction))
 
-print(f"Loss: {loss:.4f}")
+# print(f"Loss: {loss:.4f}")
 
 
 
@@ -58,9 +63,9 @@ test_z = X_test @ w + b  # (114, 1)
 test_prediction = 1 / (1 + np.exp(-test_z))  # (114, 1)
 test_result = (test_prediction >= 0.5).astype(int)
 
-print(test_result.shape)  # (114, 1)
-print(y_test.shape)  # (114, 1)
+# print(test_result.shape)  # (114, 1)
+# print(y_test.shape)  # (114, 1)
 
 accuracy = np.mean(test_result == y_test)
-print(accuracy)
+# print(accuracy)
 
